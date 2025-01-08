@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-    import type { CakeDesign, TierConfig, CakeFlavor, Frosting, CakeShape } from '../types/cake';
+    import type { CakeDesign, TierConfig, CakeFlavor, Frosting, CakeShape, CakeTopper } from '../types/cake';
     import { Header } from './Header';
     import { CakePreview } from './CakePreview';
     import { TierControls } from './TierControls';
@@ -20,6 +20,7 @@ import React, { useState } from 'react';
         frosting: 'buttercream',
         message: '',
         shape: 'round',
+        topper: null,
       });
 
       const handleTierUpdate = (tierIndex: number, updatedTier: TierConfig) => {
@@ -62,7 +63,7 @@ import React, { useState } from 'react';
                   <br />
                   Thank you for considering us, and we look forward to working with you.
                 </p>
-                <CakePreview tiers={design.tiers} />
+                <CakePreview tiers={design.tiers} topper={design.topper} />
                 <div className="mt-6">
                   <EmailForm design={design} />
                 </div>
@@ -82,10 +83,12 @@ import React, { useState } from 'react';
                   frosting={design.frosting}
                   message={design.message}
                   shape={design.shape}
+                  topper={design.topper}
                   onFlavorChange={(flavor: CakeFlavor) => setDesign({ ...design, flavor })}
                   onFrostingChange={(frosting: Frosting) => setDesign({ ...design, frosting })}
                   onMessageChange={(message: string) => setDesign({ ...design, message })}
                   onShapeChange={(shape: CakeShape) => setDesign({...design, shape})}
+                  onTopperChange={(topper: CakeTopper | null) => setDesign({...design, topper})}
                 />
               </div>
             </div>
